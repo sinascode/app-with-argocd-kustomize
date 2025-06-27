@@ -1,4 +1,5 @@
 namespace: prod
+
 resources:
 - ../../base
 
@@ -6,15 +7,17 @@ images:
   - name: nginx
     newName: nginx
     newTag: latest
-
+  
 # patchesStrategicMerge
+
 patches:
-  dev-patch.yaml
+- path: prod-patch.yaml
 
 namespace: prod
 namePrefix: prod-
+
 # configMapGenerator
 configMapGenerator:
-- name: env-vars        # base에 지정된 configMap의 이름
+- name: env-vars
   envs:
-    - prod.env        
+    - prod.env
